@@ -1,0 +1,26 @@
+@import '../../style/templates.scss';
+@import '../../style/variables.scss';
+
+.charList {
+    display: grid;
+    grid-template-rows: 2fr;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-gap: 30px 25px;
+}
+
+.button {
+    @extend %mainFont;
+    @extend %button;
+    padding: 10px 50px;
+    background-color: $red;
+    display: block;
+    margin: 45px auto 0 auto;
+
+    &:disabled {
+        filter: grayscale(0.5);
+    }
+}

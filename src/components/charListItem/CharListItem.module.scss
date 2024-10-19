@@ -1,0 +1,48 @@
+@import '../../style/templates.scss';
+@import '../../style/variables.scss';
+
+.item {
+    padding: 15px;
+    max-width: 200px;
+    min-height: 318px;
+    cursor: pointer;
+    background-color: #232222;
+    box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.25);
+
+    &:hover {
+        box-shadow: 0 5px 20px 0 $red;
+        transform: translateY(-8px);
+        transition: .4s transform;
+    }
+
+    &:focus {
+        box-shadow: 0 5px 20px 0 $red;
+        transform: translateY(-8px);
+        transition: .4s transform;
+    }
+}
+
+.image {
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+    transform: translate(-15px, -15px);
+}
+
+.noImage {
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: unset;
+    transform: translate(-15px, -15px);
+}
+
+.name {
+    @extend %mainFont;
+    color: #fff;
+    font-size: 22px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,90 @@
+@import '../../style/templates';
+
+.randChar {
+    max-height: 250px;
+    box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.25);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.randCharInfo {
+    padding: 35px 40px;
+    display: flex;
+    max-height: 250px;
+}
+
+.image {
+    min-width: 180px;
+    min-height: 180px;
+    object-fit: cover;
+}
+
+.noImage {
+    min-width: 180px;
+    min-height: 180px;
+    object-fit: unset;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 30px;
+}
+
+.title {
+    @extend %mainFont;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.description {
+    @extend %mainFont;
+    font-size: 14px;
+    font-weight: 400;
+    min-width: 265px;
+    margin-bottom: 13px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.info {
+    max-width: 230px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.buttonRedRand {
+    @extend %buttonRed;
+}
+
+.buttonGrayRand {
+    @extend %buttonGray;
+}
+
+.randCharChoice {
+    max-height: 250px;
+    padding: 35px 40px;
+    background-color: #232222;
+    position: relative;
+}
+
+.choiceText {
+    @extend %mainFont;
+    color: #fff;
+    max-width: 375px;
+    margin-bottom: 35px;
+}
+
+.choiceText:last-child {
+    margin-bottom: 20px;
+}
+
+.hammer {
+    position: absolute;
+    top: 45px;
+    right: -40px;
+}

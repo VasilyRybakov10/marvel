@@ -1,0 +1,100 @@
+@import '../../style/templates.scss';
+
+.charInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.sideBar {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+.image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 25px 25px 0 25px;
+}
+
+.noImage {
+    width: 150px;
+    height: 150px;
+    object-fit: unset;
+    margin: 25px 25px 0 25px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.name {
+    @extend %mainFont;
+    color: #000;
+    font-size: 22px;
+    text-transform: uppercase;
+    padding-right: 25px;
+    padding-top: 25px;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 100px;
+}
+
+.buttonRedInfo{
+    @extend %buttonRed;
+    margin-bottom: 10px;
+}
+
+.buttonGrayInfo{
+    @extend %buttonGray;
+}
+
+.text {
+    display: grid;
+    grid-column: 1 / 3;
+    padding: 15px 25px;
+    @extend %mainFont;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.comics {
+    padding: 0 25px 25px 25px;
+}
+
+.title {
+    @extend %mainFont;
+    font-size: 18px;
+    padding-bottom: 15px;
+}
+
+.item {
+    @extend %mainFont;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.noInfo {
+    @extend %mainFont;
+    font-size: 15px;
+    font-weight: 400;
+}

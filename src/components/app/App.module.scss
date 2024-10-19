@@ -1,0 +1,25 @@
+@import "node_modules/normalize-scss/sass/normalize";
+
+.app {
+    box-sizing: border-box;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 50px 10px;
+    background-color: #fff;
+}
+
+.bgDecoration {
+    position: absolute;
+    right: -180px;
+    bottom: -57px;
+    z-index: 1;
+}
+
+.content {
+    margin-top: 50px;
+    display: grid;
+    grid-column-gap: 25px;
+    grid-template-columns: 650px 1fr;
+    width: 100%;
+    position: relative;
+}

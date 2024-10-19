@@ -1,0 +1,49 @@
+@import '../../style/variables';
+@import '../../style/templates';
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
+}
+
+.title {
+    @extend %mainFont;
+    font-size: 28px;    
+    color: #000;
+}
+
+.marked {
+    color: $red;
+}
+
+.navigation {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.list {
+    min-width: 200px;   
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.anchor {
+    color: #000;
+    text-decoration: none;
+    @extend %mainFont;
+
+    &:hover {
+        color: $red;
+    }
+
+    &:focus {
+        color: $red;
+    }
+}
+
+.itemSep {
+    color: #000;
+    @extend %mainFont;
+}

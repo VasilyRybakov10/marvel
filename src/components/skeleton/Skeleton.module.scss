@@ -1,0 +1,63 @@
+@import '../../style/templates.scss';
+
+.skeleton {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 375px;
+    min-height: 190px;
+    margin: 0 auto;
+    animation: pulse 1.5s ease-in-out .5s infinite
+}
+
+.title {
+    @extend %mainFont;
+    font-size: 18px;
+    text-align: center;
+    padding: 0 53px 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #c4c4c4;
+}
+
+.mini {
+    width: 325px;
+    height: 16px;
+    background-color: #c4c4c4;
+}
+
+.block {
+    width: 375px;
+    height: 35px;
+    background-color: #c4c4c4;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: .4
+    }
+
+    100% {
+        opacity: 1
+    }
+}
