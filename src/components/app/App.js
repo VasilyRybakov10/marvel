@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
 import AppHeader from '../appHeader/AppHeader';
 import RandChar from '../randChar/RandChar';
@@ -8,42 +8,36 @@ import ErrorBandary from '../errorBandary/ErrorBandary';
 
 import style from './App.module.scss';
 
-class App extends Component {
+const App = (props) => {
 
-    state = {
-        selectedChar: null
+    const [selectedChar, setSelectedChar] = useState(null);
+
+    const onSelectedChar = (id) => {
+        setSelectedChar(id);
     }
 
-    onSelectedChar = (id) => {
-        this.setState({
-            selectedChar: id
-        })
-    }
-
-    onFocusSelectedChar = (e, id) => {
+    const onFocusSelectedChar = (e, id) => {
         if (e.key === 'Enter') {
-            this.onSelectedChar(id)
+            onSelectedChar(id)
         }
     }
 
-    render() {
-        return (
-            <div className={style.app}>
-                <AppHeader />
-                <main>
-                    <RandChar />
-                    <div className={style.content}>
-                        <CharList onSelectedChar={this.onSelectedChar}
-                                  onFocusSelectedChar={this.onFocusSelectedChar}/>
-                        <ErrorBandary>
-                            <CharInfo charId={this.state.selectedChar}/>
-                        </ErrorBandary>
-                    </div>
-                    <img src="./resources/img/bgDecoration.png" alt="A super hero" className={style.bgDecoration} />
-                </main>
-            </div>
-        );
-    }
+    return (
+        <div className={style.app}>
+            <AppHeader />
+            <main>
+                <RandChar />
+                <div className={style.content}>
+                    <CharList onSelectedChar={onSelectedChar}
+                                onFocusSelectedChar={onFocusSelectedChar}/>
+                    <ErrorBandary>
+                        <CharInfo charId={selectedChar}/>
+                    </ErrorBandary>
+                </div>
+                <img src="./resources/img/bgDecoration.png" alt="A super hero" className={style.bgDecoration} />
+            </main>
+        </div>
+    );
 }
 
 export default App;

@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 
 import CharListItem from '../charListItem/CharListItem';
 import Spinner from '../spinner/Spinner';
@@ -9,52 +9,49 @@ import PropTypes from 'prop-types';
 
 import style from './CharList.module.scss';
 
-class CharList extends Component {
+const CharList = (props) => {
 
-    state = {
-        charList: [],
-        loading: true,
-        error: false,
-        newItemsLoading: false,
-        offset: 210,
-        charEnded: false
+    const [charList, setCharList] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [newItemsLoading, setNewItemsLoading] = useState(false);
+    const [offset, setOffset] = useState(210);
+    const [charEnded, setCharEnded] = useState(false);
+
+    const marvelService = new MarvelService();
+
+    useEffect(() => {
+        onRequest()
+    }, [])
+
+    const onRequest = (offset) => {
+        onCharListLoading();
+        marvelService.getAllCharacters(offset)
+            .then(onCharListLoaded)
+            .catch(onError)
     }
 
-    marvelService = new MarvelService();
-
-    componentDidMount() {
-        this.onRequest();
+    const onCharListLoading = () => {
+        setNewItemsLoading(true);
     }
 
-    onRequest = (offset) => {
-        this.onCharListLoading();
-        this.marvelService.getAllCharacters(offset)
-            .then(this.onCharListLoaded)
-            .catch(this.onError)
-    }
-
-    onCharListLoading = () => {
-        this.setState({ newItemsLoading: true })
-    }
-
-    onCharListLoaded = (newCharList) => {
+    const onCharListLoaded = (newCharList) => {
         let ended = false;
         if (newCharList.length < 9) { ended = true }
 
-        this.setState(({ charList, offset }) => ({
-            charList: [...charList, ...newCharList],
-            loading: false,
-            newItemsLoading: false,
-            offset: offset + 9,
-            charEnded: ended
-        }))
+        setCharList(charList => [...charList, ...newCharList]);
+        setLoading(false);
+        setNewItemsLoading(false);
+        setOffset(offset => offset + 9);
+        setCharEnded(ended);
     }
 
-    onError = () => {
-        this.setState({ error: true, loading: false })
+    const onError = () => {
+        setError(true);
+        setLoading(false);
     }
 
-    renderItems = (charList) => {
+    const renderItems = (charList) => {
 
         const items = charList.map(char => {
 
@@ -64,8 +61,8 @@ class CharList extends Component {
                 charId={id}
                 name={name}
                 img={thumbnail}
-                onSelectedChar={this.props.onSelectedChar}
-                onFocusSelectedChar={this.props.onFocusSelectedChar}/>
+                onSelectedChar={props.onSelectedChar}
+                onFocusSelectedChar={props.onFocusSelectedChar}/>
         })
 
         return (
@@ -75,27 +72,23 @@ class CharList extends Component {
         )
     }
 
-    render() {
+    const items = renderItems(charList);
 
-        const { charList, loading, error, newItemsLoading, offset, charEnded } = this.state;
-        const items = this.renderItems(charList);
+    const spinner = loading ? <Spinner /> : null;
+    const errorMessage = error ? <ErrorMessage /> : null;
+    const content = !(loading || error) ? items : null;
+    const button = !charEnded ? <Button loading={newItemsLoading}
+        onRequest={onRequest}
+        offset={offset} /> : null;
 
-        const spinner = loading ? <Spinner /> : null;
-        const errorMessage = error ? <ErrorMessage /> : null;
-        const content = !(loading || error) ? items : null;
-        const button = !charEnded ? <Button loading={newItemsLoading}
-            onRequest={this.onRequest}
-            offset={offset} /> : null;
-
-        return (
-            <section className={style.charList}>
-                {spinner}
-                {errorMessage}
-                {content}
-                {button}
-            </section>
-        );
-    }
+    return (
+        <section className={style.charList}>
+            {spinner}
+            {errorMessage}
+            {content}
+            {button}
+        </section>
+    );
 }
 
 const Button = ({ loading, onRequest, offset }) => {
